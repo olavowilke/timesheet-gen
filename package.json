@@ -1,0 +1,39 @@
+{
+  "name": "timesheetgen",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "test": "vitest",
+    "test:run": "vitest run"
+  },
+  "dependencies": {
+    "@mantine/core": "^7.0.0",
+    "@mantine/dates": "^7.0.0",
+    "@mantine/hooks": "^7.0.0",
+    "dayjs": "^1.11.0",
+    "next": "^14.2.0",
+    "react": "^18.3.0",
+    "react-dom": "^18.3.0"
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "^6.6.0",
+    "@testing-library/react": "^16.0.0",
+    "@testing-library/user-event": "^14.5.0",
+    "@types/node": "^20",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "@vitejs/plugin-react": "^4.3.0",
+    "eslint": "^8",
+    "eslint-config-next": "^14.2.0",
+    "jsdom": "^25.0.0",
+    "postcss": "^8",
+    "postcss-preset-mantine": "^1.17.0",
+    "postcss-simple-vars": "^7.0.0",
+    "typescript": "^5",
+    "vitest": "^2.1.0"
+  }
+}
