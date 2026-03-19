@@ -1,3 +1,11 @@
+export interface TimesheetRow {
+  date: Date;
+  dayName: string;
+  hoursWorked: number | null;
+  notes: string;
+  isWeekend: boolean;
+}
+
 export interface TimesheetData {
   freelancerName: string;
   clientName: string;
