@@ -1,6 +1,6 @@
 import '@testing-library/jest-dom';
 
-// jsdom does not implement window.matchMedia — required by Mantine's color scheme logic
+// jsdom stubs for browser APIs used by Mantine
 Object.defineProperty(window, 'matchMedia', {
   writable: true,
   value: (query: string) => ({
@@ -14,3 +14,9 @@ Object.defineProperty(window, 'matchMedia', {
     dispatchEvent: () => false,
   }),
 });
+
+global.ResizeObserver = class ResizeObserver {
+  observe() {}
+  unobserve() {}
+  disconnect() {}
+};
