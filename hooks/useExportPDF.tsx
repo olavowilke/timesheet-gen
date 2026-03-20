@@ -1,8 +1,6 @@
 import { useState } from 'react';
-import { pdf } from '@react-pdf/renderer';
 import type { TimesheetData, TimesheetRow } from '@/types/timesheet';
 import { formatPeriodLabel } from '@/components/PeriodSelector/PeriodSelector';
-import TimesheetPDF from '@/components/TimesheetPDF/TimesheetPDF';
 
 export function generateFilename(data: TimesheetData): string {
   const client =
@@ -27,6 +25,13 @@ export function useExportPDF(data: TimesheetData, rows: TimesheetRow[]) {
     try {
       const totalHours = rows.reduce((sum, r) => sum + (r.hoursWorked ?? 0), 0);
       const totalAmount = totalHours * data.hourlyRate;
+
+      // Dynamic imports keep @react-pdf/renderer out of the SSR bundle entirely.
+      // vi.mock() in tests intercepts these the same as static imports.
+      const [{ pdf }, { default: TimesheetPDF }] = await Promise.all([
+        import('@react-pdf/renderer'),
+        import('@/components/TimesheetPDF/TimesheetPDF'),
+      ]);
 
       const blob = await pdf(
         <TimesheetPDF

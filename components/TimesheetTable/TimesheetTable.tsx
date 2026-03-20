@@ -99,15 +99,21 @@ export default function TimesheetTable({
       </Table.Thead>
 
       <Table.Tbody>
-        {rows.map((row, index) => (
+        {rows.map((row, index) => {
+          const isZero = !row.hoursWorked; // null or 0
+          return (
           <Table.Tr
             key={row.date.toISOString()}
             style={
               row.isWeekend ? { backgroundColor: 'var(--mantine-color-gray-0)' } : undefined
             }
           >
-            <Table.Td>{dayjs(row.date).format('ddd, MMM D')}</Table.Td>
-            <Table.Td>{row.dayName}</Table.Td>
+            <Table.Td style={{ color: isZero ? 'var(--mantine-color-gray-5)' : undefined }}>
+              {dayjs(row.date).format('ddd, MMM D')}
+            </Table.Td>
+            <Table.Td style={{ color: isZero ? 'var(--mantine-color-gray-5)' : undefined }}>
+              {row.dayName}
+            </Table.Td>
             <Table.Td>
               <NumberInput
                 size="xs"
@@ -133,7 +139,8 @@ export default function TimesheetTable({
               />
             </Table.Td>
           </Table.Tr>
-        ))}
+          );
+        })}
       </Table.Tbody>
 
       <Table.Tfoot>
